@@ -7,7 +7,7 @@ import { PluginConfig } from "@/savedata";
 import { aggregatorBlock } from "./aggregator_block";
 import { ContentAggregatorTabUI } from "./ui/content-aggregator-tab";
 
-const APPLY_VISUAL_SQL_PRESET_EVENT = 'siyuan-steve-tools:apply-visual-sql-preset';
+const APPLY_VISUAL_SQL_PRESET_EVENT = 'siyuan-steve-tools-modified:apply-visual-sql-preset';
 
 // Aggregate 模块
 export class M_Aggregate {
@@ -202,7 +202,7 @@ export class M_Aggregate {
                         // 使用持久化配置替代 localStorage
                         loadPresets: () => (conf.get('presets') || {}),
                         savePresets: async (obj) => { conf.set('presets', obj); await conf.save(); },
-                        presetsKey: 'siyuan-steve-tools:visual-sql-presets',
+                        presetsKey: 'siyuan-steve-tools-modified:visual-sql-presets',
                         persistKey: `visual-sql-tab`,
                         onSqlChange: (_sql) => {
                             // 可在此触发查询/日志
@@ -381,7 +381,7 @@ export class M_Aggregate {
                                     const conf2 = new PluginConfig(this.plugin.name, 'aggregate-sql');
                                     await conf2.load();
                                     const eui = new VisualEchartsUI(c2, {
-                                        persistKey: 'siyuan-steve-tools:visual-echarts-from-sql',
+                                        persistKey: 'siyuan-steve-tools-modified:visual-echarts-from-sql',
                                         initialSQL: sql,
                                         loadSqlPresets: () => (conf2.get('presets') || {}),
                                         saveSqlPresets: async (obj) => { conf2.set('presets', obj); await conf2.save(); },
@@ -439,7 +439,7 @@ export class M_Aggregate {
                     const conf3 = new PluginConfig(this.plugin.name, 'aggregate-sql');
                     await conf3.load();
                     const ui = new VisualEchartsUI(container, {
-                        persistKey: 'siyuan-steve-tools:visual-echarts-slash',
+                        persistKey: 'siyuan-steve-tools-modified:visual-echarts-slash',
                         loadSqlPresets: () => (conf3.get('presets') || {}),
                         saveSqlPresets: async (obj) => { conf3.set('presets', obj); await conf3.save(); },
                         loadEchartsPresets: () => (conf3.get('echartsPresets') || {}),
@@ -559,7 +559,7 @@ export class M_Aggregate {
                                 const conf = new PluginConfig(this.plugin.name, 'aggregate-sql');
                                 await conf.load();
                                 const eui = new VisualEchartsUI(c2, {
-                                    persistKey: 'siyuan-steve-tools:visual-echarts-from-sql-modal',
+                                    persistKey: 'siyuan-steve-tools-modified:visual-echarts-from-sql-modal',
                                     initialSQL: sql,
                                     loadSqlPresets: () => (conf.get('presets') || {}),
                                     saveSqlPresets: async (obj) => { conf.set('presets', obj); await conf.save(); },
@@ -624,7 +624,7 @@ export class M_Aggregate {
                     const conf = new PluginConfig(this.plugin.name, 'aggregate-sql');
                     await conf.load();
                     const ui = new VisualEchartsUI(container, {
-                        persistKey: 'siyuan-steve-tools:visual-echarts-modal',
+                        persistKey: 'siyuan-steve-tools-modified:visual-echarts-modal',
                         loadSqlPresets: () => (conf.get('presets') || {}),
                         saveSqlPresets: async (obj) => { conf.set('presets', obj); await conf.save(); },
                         loadEchartsPresets: () => (conf.get('echartsPresets') || {}),

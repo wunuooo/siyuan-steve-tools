@@ -1,9 +1,9 @@
 STEVETOOLS
 ==========
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/loonghfut/siyuan-steve-tools)](https://github.com/loonghfut/siyuan-steve-tools/releases)
-[![GitHub stars](https://img.shields.io/github/stars/loonghfut/siyuan-steve-tools)](https://github.com/loonghfut/siyuan-steve-tools/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/loonghfut/siyuan-steve-tools)](https://github.com/loonghfut/siyuan-steve-tools/issues)
-[![GitHub all releases](https://img.shields.io/github/downloads/loonghfut/siyuan-steve-tools/total)](https://github.com/loonghfut/siyuan-steve-tools/releases)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/loonghfut/siyuan-steve-tools-modified)](https://github.com/loonghfut/siyuan-steve-tools-modified/releases)
+[![GitHub stars](https://img.shields.io/github/stars/loonghfut/siyuan-steve-tools-modified)](https://github.com/loonghfut/siyuan-steve-tools-modified/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/loonghfut/siyuan-steve-tools-modified)](https://github.com/loonghfut/siyuan-steve-tools-modified/issues)
+[![GitHub all releases](https://img.shields.io/github/downloads/loonghfut/siyuan-steve-tools-modified/total)](https://github.com/loonghfut/siyuan-steve-tools-modified/releases)
 
 这是一个自用工具集合？那为什么做了那么多我用不到的功能？那为什么耗费那么多夜晚来开发维护用不到的功能？（反思），~~在我自己使用的同时，分享出来也希望能够帮助到有相关需求的其他人。~~  
 `<所有功能模块开源>`  
@@ -35,7 +35,7 @@ win端s3同步后，docker端感知s3同步。
 可视化生成SQL语句，查询思源数据库，支持多条件筛选，排序等功能，支持结果预览和嵌入块。  
 可视化图表生成器（基于数据库，SQL查询）
 
-#### 开发动力来源[打赏](https://pic.imgdb.cn/item/6751b929d0e0a243d4de55a7.png) [star](https://github.com/loonghfut/siyuan-steve-tools) 
+#### 开发动力来源[打赏](https://pic.imgdb.cn/item/6751b929d0e0a243d4de55a7.png) [star](https://github.com/loonghfut/siyuan-steve-tools-modified) 
 
 #### 更新日志:
 
@@ -48,7 +48,7 @@ win端s3同步后，docker端感知s3同步。
 - feat: 更新版本号至 0.35.0 (loonghfut)
 
 
-更多详见[提交记录](https://github.com/loonghfut/siyuan-steve-tools/commits/main-2/)
+更多详见[提交记录](https://github.com/loonghfut/siyuan-steve-tools-modified/commits/main-2/)
 
 #### 感谢：
 - [Frostime](https://ld246.com/member/Frostime): 提供插件开发模板和开发工具包

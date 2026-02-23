@@ -2,8 +2,10 @@ $background-color: var(--b3-theme-background);
 $text-color: var(--b3-theme-on-background);
 $hover-background-color: var(--b3-list-hover);
 $border-color: var(--b3-border-color);
-$background-color-today: var(--b3-list-hover);
-$background-color-1: var(--b3-theme-surface);
+// $background-color-today: var(--b3-list-hover);
+$background-color-today: #d1d1d13d;
+// $background-color-1: var(--b3-theme-surface);
+$background-color-1: #d1d1d13d;
 $text-color-error: var(--b3-theme-error);
 $text-color-success: var(--b3-theme-success);
 $text-color-processing: #3573f0;
@@ -375,9 +377,13 @@ div.fc-view-harness.fc-view-harness-active>div>table>thead>tr>th {
     background: $background-color;
 }
 
-// .fc .fc-daygrid-day.fc-day-today {
-//     background-color: $background-color-today;
-// }
+.fc .fc-daygrid-day.fc-day-today {
+    background-color: $background-color-today;
+}
+
+.fc .fc-timegrid-col.fc-day-today {
+    background-color: $background-color-today;
+}
 
 
 
@@ -961,7 +967,7 @@ div.fc-view-harness.fc-view-harness-active>div>table>thead>tr>th {
     }
 }
 
-.sy__siyuan-steve-toolscal-dock-day {
+.sy__siyuan-steve-tools-modifiedcal-dock-day {
     .fc-timeGridDay-view {
         height: 100%;
     }

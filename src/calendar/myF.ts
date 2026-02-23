@@ -218,7 +218,7 @@ export async function getViewId(va_ids: string[]): ViewData {
         }
         try {
             const view = await api.renderAttributeView(va_id);
-            // # https://github.com/loonghfut/siyuan-steve-tools/issues/6
+            // # https://github.com/loonghfut/siyuan-steve-tools-modified/issues/6
             const rootname = view.name ? `${view.name}-` : "";
             const rootid = view.id;
             const data: ViewItem[] = view.views.map((viewItem) => ({

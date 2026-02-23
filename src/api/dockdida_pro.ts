@@ -448,7 +448,7 @@ export class DidaLinkInterceptor {
             console.debug("当前dock状态:", isExpanded);
             if (!isExpanded) {
                 // 模拟点击dock元素来展开
-                const dockElement = document.querySelector('[data-type="siyuan-steve-toolsdida-dock"]') as HTMLElement;
+                const dockElement = document.querySelector('[data-type="siyuan-steve-tools-modifieddida-dock"]') as HTMLElement;
                 if (dockElement) {
                     console.debug("找到dock元素，模拟点击展开");
                     dockElement.click();

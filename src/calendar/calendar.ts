@@ -886,103 +886,85 @@ export async function run(
             }
             // 设置样式
             const source = info.event.extendedProps.source;
-            let colorConfig;
+            let currentBgColor: string | null = null;
+            let currentTextColor: string | null = null;
 
             // 1) lifelog 事件继续使用既有配色
             if (source === 'lifelog') {
                 const type = info.event.extendedProps.logType || '固定';
-                colorConfig = lifelogColors[type] || lifelogColors['固定'];
+                const colorConfig = lifelogColors[type] || lifelogColors['固定'];
+                currentBgColor = colorConfig.background;
+                currentTextColor = colorConfig.text;
             } else {
                 // 2) 如果启用了“按标签上色”并且事件包含标签，则优先使用标签颜色
                 const enableTagColor = settingdata["cal-color-by-tag"];
                 const tags: string[] = Array.isArray(info.event.extendedProps.tags) ? info.event.extendedProps.tags : [];
-                let tagColorBg: string | null = null;
+                const mapStr = (settingdata["cal-tag-color-map"] || "") as string;
+                const tagColorMap = getTagColorMap(mapStr);
 
                 if (enableTagColor && tags.length > 0) {
-                    // 解析映射
-                    const mapStr = (settingdata["cal-tag-color-map"] || "") as string;
-                    const tagColorMap = getTagColorMap(mapStr);
-
                     // 取第一个标签做主色
                     const mainTag = String(tags[0]);
-                    if (tagColorMap[mainTag]) {
-                        tagColorBg = tagColorMap[mainTag];
+                    const tagConfig = tagColorMap[mainTag];
+
+                    if (tagConfig) {
+                        const statusVal = info?.event?.extendedProps?.status;
+                        if (statusVal === '完成' || statusVal === '归档') {
+                            currentBgColor = tagConfig.completedBg;
+                            currentTextColor = tagConfig.completedText;
+                        } else {
+                            currentBgColor = tagConfig.incompleteBg;
+                            currentTextColor = tagConfig.incompleteText;
+                        }
                     } else {
                         // 未在映射中，使用稳定哈希生成颜色
                         const hash = hashString(mainTag);
                         const [bg] = getColors(Math.abs(hash));
-                        tagColorBg = bg;
+                        currentBgColor = bg;
+                        currentTextColor = guessTextColor(bg);
                     }
-                }
-
-                if (tagColorBg) {
-                    const text = guessTextColor(tagColorBg);
-                    colorConfig = { background: tagColorBg, text } as any;
                 } else {
                     // 3) 默认：沿用优先级配色
                     const priority = info.event.extendedProps.priority || '无';
-                    colorConfig = getCategoryColor(priority);
+                    const colorConfig = getCategoryColor(priority);
+                    currentBgColor = colorConfig.background;
+                    currentTextColor = colorConfig.text;
                 }
             }
-            // 应用颜色
-            if (colorConfig?.background) {
-                info.el.style.backgroundColor = colorConfig.background;
-            }
-            // Also apply text color to child elements
-            const timeEl = info.el.querySelector('.fc-event-time');
-            const titleEl = info.el.querySelector('.fc-event-title');
-            if (timeEl && colorConfig?.text) (timeEl as HTMLElement).style.color = colorConfig.text;
-            if (titleEl && colorConfig?.text) (titleEl as HTMLElement).style.color = colorConfig.text;
 
+            // 如果事件是周期性事件，且不是 qqcalendar 来源，则动态更新 status 属性
             if (info.event.extendedProps.isRecurring && info.event.extendedProps.source !== 'qqcalendar') {
                 const isCompleted = isEventCompleted(info.event);
-                // 动态更新 status 属性
-                // console.debug('Before update:', {...info.event.extendedProps}); // 记录更新前的属性
                 info.event.setExtendedProp('status', isCompleted ? '完成' : '未完成');
-                // console.debug('After update:', {...info.event.extendedProps}); // 记录更新后的属性
             }
-            // console.debug("info.event.extendedProps", info.event.extendedProps);
-            ////完成样式
 
+            const statusVal = info?.event?.extendedProps?.status;
+
+            // 应用颜色
+            if (currentBgColor) {
+                info.el.style.backgroundColor = currentBgColor;
+            }
+            if (currentTextColor) {
+                const timeEl = info.el.querySelector('.fc-event-time');
+                const titleEl = info.el.querySelector('.fc-event-title');
+                if (timeEl) (timeEl as HTMLElement).style.color = currentTextColor;
+                if (titleEl) (titleEl as HTMLElement).style.color = currentTextColor;
+            }
+
+            // 完成样式处理
             try {
                 if (info.event._def === undefined) return;
-                const statusVal = info?.event?.extendedProps?.status;
-                if (info && info.event && statusVal && (statusVal === '完成' || statusVal === '归档')) {
-                    // 应用完成状态的样式
+                if (statusVal && (statusVal === '完成' || statusVal === '归档')) {
                     info.el.style.textDecoration = 'line-through';
-                    if (settingdata["cal-event-color"]) {
-                        try {
-                            // 调暗背景色
-                            const uniqueId = info.event.extendedProps.priority as string || '无';
-                            const hash = Array.from(uniqueId).reduce((acc, char) => {
-                                return char.charCodeAt(0) + ((acc << 5) - acc);
-                            }, 0);
-                            const [backgroundColor] = getColors(Math.abs(hash));
-
-                            // 将背景色转换为 RGBA 格式并降低不透明度
-                            info.el.style.backgroundColor = backgroundColor.replace('hsl', 'hsla').replace(')', ', 0.5)');
-                        } catch (colorError) {
-                            console.error('背景色处理错误:', colorError);
-                            console.debug('事件数据:', info.event);
-                        }
+                    const titleEl = info.el.querySelector('.fc-event-title');
+                    if (titleEl) {
+                        (titleEl as HTMLElement).style.textDecoration = 'line-through';
                     }
-                    try {
-                        // 应用其他样式
-                        const titleEl = info.el.querySelector('.fc-event-title');
-                        if (titleEl) {
-                            (titleEl as HTMLElement).style.textDecoration = 'line-through';
-                        }
-
-                        const timeEl = info.el.querySelector('.fc-event-time');
-                        if (timeEl) {
-                            (timeEl as HTMLElement).style.textDecoration = 'line-through';
-                        }
-
-                        info.el.classList.add('event-completed');
-                    } catch (styleError) {
-                        console.error('样式应用错误:', styleError);
-                        console.debug('DOM元素:', info.el);
+                    const timeEl = info.el.querySelector('.fc-event-time');
+                    if (timeEl) {
+                        (timeEl as HTMLElement).style.textDecoration = 'line-through';
                     }
+                    info.el.classList.add('event-completed');
                 }
             } catch (mainError) {
                 console.error('完成状态处理主要错误:', mainError);
@@ -1303,8 +1285,15 @@ function hashString(str: string): number {
     return hash;
 }
 
-function parseTagColorMap(input: string): Record<string, string> {
-    const map: Record<string, string> = {};
+interface TagColorConfig {
+    incompleteBg: string;
+    incompleteText: string;
+    completedBg: string;
+    completedText: string;
+}
+
+function parseTagColorMap(input: string): Record<string, TagColorConfig> {
+    const map: Record<string, TagColorConfig> = {};
     if (!input || typeof input !== 'string') return map;
     const lines = input.split(/\r?\n/);
     for (const line of lines) {
@@ -1315,15 +1304,21 @@ function parseTagColorMap(input: string): Record<string, string> {
             const key = m[0].trim();
             const value = m.slice(1).join('=')  // 允许颜色里包含冒号
                 .trim();
-            if (key && value) {
-                map[key] = value;
+            const colors = value.split(',');
+            if (key && colors.length === 4) {
+                map[key] = {
+                    incompleteBg: colors[0].trim(),
+                    incompleteText: colors[1].trim(),
+                    completedBg: colors[2].trim(),
+                    completedText: colors[3].trim(),
+                };
             }
         }
     }
     return map;
 }
 
-function getTagColorMap(input: string): Record<string, string> {
+function getTagColorMap(input: string): Record<string, TagColorConfig> {
     if (input === cachedTagColorMapStr) {
         return cachedTagColorMap;
     }

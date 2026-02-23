@@ -1,8 +1,8 @@
 {
-  "name": "siyuan-steve-tools",
+  "name": "siyuan-steve-tools-modified",
   "author": "steve",
-  "url": "https://github.com/loonghfut/siyuan-steve-tools",
-  "version": "0.35.0",
+  "url": "https://github.com/loonghfut/siyuan-steve-tools-modified",
+  "version": "m.35.0",
   "minAppVersion": "3.5.1",
   "disabledInPublish": true,
   "backends": [

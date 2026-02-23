@@ -26,7 +26,7 @@ export class VisualEchartsUI {
   constructor(container: HTMLElement, opts?: VisualEchartsOptions) {
     this.container = container;
     this.opts = opts;
-    this.key = opts?.persistKey || 'siyuan-steve-tools:visual-echarts-ui';
+    this.key = opts?.persistKey || 'siyuan-steve-tools-modified:visual-echarts-ui';
     this.loadSqlPresetsProvider = opts?.loadSqlPresets;
     this.saveSqlPresetsProvider = opts?.saveSqlPresets;
     this.loadEchartsPresetsProvider = opts?.loadEchartsPresets;

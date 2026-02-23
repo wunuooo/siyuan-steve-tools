@@ -43,13 +43,13 @@ import { buildTldrawLink } from './utils/link-builder';
 import { setInteracting } from './utils/idle-scheduler';
 import { registerInstance, unregisterInstance } from './tldraw-instance-manager';
 const assetUrls = getAssetUrls({
-    baseUrl: 'plugins/siyuan-steve-tools/asset/',
+    baseUrl: 'plugins/-modified/asset/',
 })
 
 // 为返回的 assetUrls 添加自定义图标映射（运行时赋值以避免类型定义冲突）
 try {
-    assetUrls.icons['mindmap'] = 'plugins/siyuan-steve-tools/asset/icons/custom/mindmap.svg';
-    assetUrls.icons['iconParagraph'] = 'plugins/siyuan-steve-tools/asset/icons/custom/iconParagraph.svg';
+    assetUrls.icons['mindmap'] = 'plugins/siyuan-steve-tools-modified/asset/icons/custom/mindmap.svg';
+    assetUrls.icons['iconParagraph'] = 'plugins/siyuan-steve-tools-modified/asset/icons/custom/iconParagraph.svg';
 } catch (err) {
     console.warn('无法在 assetUrls 上添加 custom-icon 映射', err);
 }
@@ -1479,7 +1479,7 @@ export class TldrawManager {
                         // console.debug("%%%",block.markdown);
                         // 只删除指向当前画板(this.id) 与该块(blockId) 的[*](...)链接
                         // 支持 https:// 和 siyuan:// 两种协议
-                        const replacedMarkdown = block.kramdown.replace(/\[\*\]\(((https|siyuan):\/\/plugins\/siyuan-steve-tools\/\?[^)]+)\)/g, (match, url) => {
+                        const replacedMarkdown = block.kramdown.replace(/\[\*\]\(((https|siyuan):\/\/plugins\/siyuan-steve-tools-modified\/\?[^)]+)\)/g, (match, url) => {
                             try {
                                 // 处理 siyuan:// 协议：转换为 https:// 以便使用 URL API
                                 const parseableUrl = url.startsWith('siyuan://') ? url.replace('siyuan://', 'https://') : url;

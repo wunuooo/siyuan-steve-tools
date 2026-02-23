@@ -76,8 +76,8 @@ export default defineConfig({
 
         lib: {
             entry: resolve(__dirname, "src/index.ts"),
-            fileName: "index",
-            formats: ["cjs"],
+            formats: ['cjs'], // 关键：必须是 cjs
+            fileName: () => 'index.js',
         },
         rollupOptions: {
             plugins: [
@@ -113,7 +113,7 @@ export default defineConfig({
             external: ["siyuan", "process"],
 
             output: {
-                entryFileNames: "[name].js",
+                inlineDynamicImports: true,
                 assetFileNames: (assetInfo) => {
                     if (assetInfo.name === "style.css") {
                         return "index.css"

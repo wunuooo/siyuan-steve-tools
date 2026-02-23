@@ -320,7 +320,7 @@ export class M_calendar {
             // }, 900000);
         }
     // cal-auto-syncing-update 逻辑已迁移至 listeners/transactionListener.ts，通过 eventBus 'ws-main' 统一处理
-        //解决 https://github.com/loonghfut/siyuan-steve-tools/issues/3
+        //解决 https://github.com/loonghfut/siyuan-steve-tools-modified/issues/3
         //实现看板实时更新
         //2025-2-9更新为插件api方式监听（抽离至 listeners/transactionListener.ts）
         registerTransactionListener(this.plugin, this);

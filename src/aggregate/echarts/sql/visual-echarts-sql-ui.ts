@@ -339,7 +339,7 @@ export class VisualEchartsSqlUI {
   constructor(container: HTMLElement, options?: VisualEchartsSqlOptions) {
     this.root = container;
     this.opts = options;
-    this.key = options?.persistKey || 'siyuan-steve-tools:visual-echarts-sql-ui';
+    this.key = options?.persistKey || 'siyuan-steve-tools-modified:visual-echarts-sql-ui';
     this.render();
     this.restore();
     this.rebuildCode();

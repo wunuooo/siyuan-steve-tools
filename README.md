@@ -1,9 +1,9 @@
 STEVETOOLS
 ==========
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/loonghfut/siyuan-steve-tools)](https://github.com/loonghfut/siyuan-steve-tools/releases)
-[![GitHub stars](https://img.shields.io/github/stars/loonghfut/siyuan-steve-tools)](https://github.com/loonghfut/siyuan-steve-tools/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/loonghfut/siyuan-steve-tools)](https://github.com/loonghfut/siyuan-steve-tools/issues)
-[![GitHub all releases](https://img.shields.io/github/downloads/loonghfut/siyuan-steve-tools/total)](https://github.com/loonghfut/siyuan-steve-tools/releases)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/loonghfut/siyuan-steve-tools-modified)](https://github.com/loonghfut/siyuan-steve-tools-modified/releases)
+[![GitHub stars](https://img.shields.io/github/stars/loonghfut/siyuan-steve-tools-modified)](https://github.com/loonghfut/siyuan-steve-tools-modified/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/loonghfut/siyuan-steve-tools-modified)](https://github.com/loonghfut/siyuan-steve-tools-modified/issues)
+[![GitHub all releases](https://img.shields.io/github/downloads/loonghfut/siyuan-steve-tools-modified/total)](https://github.com/loonghfut/siyuan-steve-tools-modified/releases)
 
 This is a personal toolkit collection. Why did I build so many features I don’t always use? Why spend countless nights maintaining features I may not need? (Reflection.) While I use it for myself, I also share it in case it helps others with similar needs.
 
@@ -85,7 +85,7 @@ Changelog:
 - feat(dida): add request tagging to optimize network interception handling (loonghfut)
 - chore(plugin): bump version to 0.20.7 (loonghfut)
 
-For more details see the commit history: https://github.com/loonghfut/siyuan-steve-tools/commits/main-2/
+For more details see the commit history: https://github.com/loonghfut/siyuan-steve-tools-modified/commits/main-2/
 
 Thanks to:
 - Frostime: plugin template and development toolkit

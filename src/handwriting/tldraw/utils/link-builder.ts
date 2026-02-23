@@ -17,7 +17,7 @@ export function buildTldrawLink(
     const scheme = (settingdata['tldraw-link-scheme'] as 'https' | 'siyuan') || 'https';
     const protocol = scheme === 'siyuan' ? 'siyuan://' : 'https://';
     
-    let url = `${protocol}plugins/siyuan-steve-tools/?rootid=${rootId}`;
+    let url = `${protocol}plugins/siyuan-steve-tools-modified/?rootid=${rootId}`;
     
     if (blockId) {
         url += `&blockid=${blockId}`;

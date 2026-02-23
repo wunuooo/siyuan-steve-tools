@@ -633,7 +633,7 @@ ${renderedContent}
                     continue;
                 }
 
-                // https://github.com/loonghfut/siyuan-steve-tools/issues/73
+                // https://github.com/loonghfut/siyuan-steve-tools-modified/issues/73
                 // 识别标签
                 if (event.description && event.description.includes('#')) {
                     // 匹配所有 #标签，支持中文、英文、数字
@@ -769,7 +769,7 @@ ${renderedContent}
                     continue;
                 }
 
-                // https://github.com/loonghfut/siyuan-steve-tools/issues/73
+                // https://github.com/loonghfut/siyuan-steve-tools-modified/issues/73
                 // 识别标签
                 if (event.description && event.description.includes('#')) {
                     // 匹配所有 #标签，支持中文、英文、数字

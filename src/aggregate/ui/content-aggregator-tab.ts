@@ -234,7 +234,7 @@ export class ContentAggregatorTabUI {
               custom: { icon: 'iconSQL', title: 'SQL 视图', id: pluginName + 'visual-sql', data: { id: null, presetName: n } },
               keepCursor: false,
             });
-            window.dispatchEvent(new CustomEvent('siyuan-steve-tools:apply-visual-sql-preset', { detail: { presetName: n } }));
+            window.dispatchEvent(new CustomEvent('siyuan-steve-tools-modified:apply-visual-sql-preset', { detail: { presetName: n } }));
           } catch (err) {
             showMessage('打开 SQL 编辑器失败', 3000, 'error');
           }
@@ -487,7 +487,7 @@ export class ContentAggregatorTabUI {
           custom: { icon: 'iconSQL', title: 'SQL 视图', id: pluginName + 'visual-sql', data: { id: null, presetName: name } },
           keepCursor: false,
         });
-        window.dispatchEvent(new CustomEvent('siyuan-steve-tools:apply-visual-sql-preset', { detail: { presetName: name } }));
+        window.dispatchEvent(new CustomEvent('siyuan-steve-tools-modified:apply-visual-sql-preset', { detail: { presetName: name } }));
       } catch {
         showMessage('打开 SQL 编辑器失败', 3000, 'error');
       }

@@ -131,7 +131,7 @@ export class VisualEchartsQueryUI {
   constructor(container: HTMLElement, options?: VisualEchartsQueryOptions) {
     this.root = container;
     this.opts = options;
-    this.key = options?.persistKey || 'siyuan-steve-tools:visual-echarts-query-ui';
+    this.key = options?.persistKey || 'siyuan-steve-tools-modified:visual-echarts-query-ui';
     this.render();
     this.restore();
     this.rebuildCode();

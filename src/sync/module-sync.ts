@@ -34,7 +34,7 @@ export class M_sync {
                         setTimeout(async () => {
                             try {
                                 let originalIcon = "";
-                                const iconElement = document.querySelector('#plugin_siyuan-steve-tools_0 svg use');
+                                const iconElement = document.querySelector('#plugin_siyuan-steve-tools-modified-modified-modified_0 svg use');
                                 if (iconElement) {
                                     // 临时改变图标
                                     originalIcon = iconElement.getAttribute('xlink:href');

@@ -24,7 +24,7 @@ export class VisualSqlAdvancedUI {
     private rootGroupEl!: HTMLElement; // 根分组容器
     private tagsCache?: string[];
     private tagsLoading?: Promise<string[]>;
-    private recentTagsKey = 'siyuan-steve-tools:recent-tags';
+    private recentTagsKey = 'siyuan-steve-tools-modified:recent-tags';
     // 字段类型与枚举
     private readonly enumTypeOptions = [
         { v: 'd', n: '文档(d)' },
@@ -57,7 +57,7 @@ export class VisualSqlAdvancedUI {
     constructor(container: HTMLElement, options?: VisualSqlAdvancedUIOptions) {
         this.container = container;
         this.opts = options || {};
-        this.storageKey = this.opts.persistKey ?? 'siyuan-steve-tools:visual-sql-advanced-ui';
+        this.storageKey = this.opts.persistKey ?? 'siyuan-steve-tools-modified:visual-sql-advanced-ui';
         this.render();
         this.restoreState();
         this.emitSql();

@@ -97,7 +97,7 @@ ${changelogContent}
         }
         
         // Create the updated content with only the latest changelog
-        const updatedContent = beforeMarker + newEntry + '\n更多详见[提交记录](https://github.com/loonghfut/siyuan-steve-tools/commits/main-2/)\n' + afterChangelog;
+        const updatedContent = beforeMarker + newEntry + '\n更多详见[提交记录](https://github.com/loonghfut/siyuan-steve-tools-modified/commits/main-2/)\n' + afterChangelog;
         
         // Write the updated content back to the file
         fs.writeFileSync(readmePath, updatedContent, 'utf8');

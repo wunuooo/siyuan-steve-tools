@@ -51,7 +51,7 @@ export class M_handwriting {
         const handlePluginUrl = async (url: string) => {
             try {
                 // 支持两种前缀：siyuan://plugins/... 或 https://plugins/...
-                if (!url || (!url.startsWith('siyuan://plugins/siyuan-steve-tools/') && !url.startsWith('https://plugins/siyuan-steve-tools/'))) {
+                if (!url || (!url.startsWith('siyuan://plugins/siyuan-steve-tools-modified/') && !url.startsWith('https://plugins/siyuan-steve-tools-modified/'))) {
                     return;
                 }
 
@@ -146,7 +146,7 @@ export class M_handwriting {
             await handlePluginUrl(url);
         });
 
-        // 拦截以 https://plugins/siyuan-steve-tools/ 开头的链接点击并交给 handlePluginUrl 处理
+        // 拦截以 https://plugins/siyuan-steve-tools-modified/ 开头的链接点击并交给 handlePluginUrl 处理
         this.clickHandler = async (e: MouseEvent) => {
             // 仅处理左键点击且未被修饰键干预的常规点击
             if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -198,7 +198,7 @@ export class M_handwriting {
             if (!href) return;
 
             // 只拦截目标前缀，避免影响其他链接
-            if (href.startsWith('https://plugins/siyuan-steve-tools/')) {
+            if (href.startsWith('https://plugins/siyuan-steve-tools-modified/')) {
                 e.preventDefault();
                 e.stopPropagation();
                 try {

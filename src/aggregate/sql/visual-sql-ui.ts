@@ -92,7 +92,7 @@ export class VisualSqlUI {
   private ialLikeInput!: HTMLInputElement;
   private tagInput!: HTMLInputElement; // 使用带 datalist 的单一输入
   private tagsDatalist!: HTMLDataListElement;
-  private recentTagsKey = 'siyuan-steve-tools:recent-tags';
+  private recentTagsKey = 'siyuan-steve-tools-modified:recent-tags';
   private createdDaysInput!: HTMLInputElement;
   private updatedDaysInput!: HTMLInputElement;
   private createdTodayCheck!: HTMLInputElement;
@@ -131,8 +131,8 @@ export class VisualSqlUI {
     this.container = container;
     this.opts = options || {};
     this.builder = new VisualSqlBuilder('embedded');
-    this.storageKey = this.opts.persistKey ?? 'siyuan-steve-tools:visual-sql-ui';
-    this.presetsKey = this.opts.presetsKey ?? 'siyuan-steve-tools:visual-sql-presets';
+    this.storageKey = this.opts.persistKey ?? 'siyuan-steve-tools-modified:visual-sql-ui';
+    this.presetsKey = this.opts.presetsKey ?? 'siyuan-steve-tools-modified:visual-sql-presets';
     this.previewCols = this.normalizePreviewColumns(this.opts.previewColumns);
     this.render();
     // 恢复上次状态并生成 SQL
@@ -2393,7 +2393,7 @@ export class VisualSqlUI {
     const advContainer = dialog.querySelector('[data-adv-container]') as HTMLElement;
     let frag = this.advSqlFragment;
     new VisualSqlAdvancedUI(advContainer, {
-      persistKey: 'siyuan-steve-tools:visual-sql-advanced-ui',
+      persistKey: 'siyuan-steve-tools-modified:visual-sql-advanced-ui',
       onChangeSql: (f) => { frag = f; }
     });
 
