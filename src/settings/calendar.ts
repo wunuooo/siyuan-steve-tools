@@ -22,6 +22,7 @@ export const calendarDefaults: Record<string, any> = {
     "cal-week-start": "monday",
     "cal-show-right-click": false,
     "cal-drag-change": false,
+    "cal-move-block-on-drop": false,
     "cal-time": 1,
     "cal-create-for-date": true,
     // ics 订阅
@@ -142,6 +143,7 @@ export const calendarGroup = (ctx: BuildContext): SettingGroupDefinition => ({
                 { type: "checkbox", title: "是否自动更新状态(打开视图时生效）", description: "根据块内子事件完成情况自动更新事件状态", key: "cal-auto-update-status", value: ctx.settings["cal-auto-update-status"] },
                 { type: "checkbox", title: "自动创建缺失的数据库字段", description: "自动创建日程管理所需的数据库字段", key: "cal-auto-create-fields", value: ctx.settings["cal-auto-create-fields"] },
                 { type: "checkbox", title: "日历视图拖拽归档", description: "拖拽事件到视图上方即可归档", key: "cal-drag-change", value: ctx.settings["cal-drag-change"] },
+                 { type: "checkbox", title: "拖拽日程时移动对应块", description: "当拖拽日历上的日程到另一天时，自动将其在日记本中的对应块也移动到新日期的日记本中", key: "cal-move-block-on-drop", value: ctx.settings["cal-move-block-on-drop"] },
             ]
         },
         {

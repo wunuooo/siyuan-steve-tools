@@ -162,6 +162,53 @@ export async function scheduleUnscheduledEvent(event: UnscheduledEvent, dateStr:
         return false;
     }
 }
+
+export async function moveEventBlockToNewDate(info: any) {
+    const blockId = info.event.extendedProps.blockId;
+    const oldDate = info.oldEvent.start;
+    const newDate = info.event.start;
+
+    if (!blockId || !oldDate || !newDate) {
+        console.debug('无法移动块：缺少块ID或日期信息');
+        return;
+    }
+
+    try {
+            // --- 调试日志 --- 
+            console.debug("开始移动块的验证流程");
+            console.debug("接收到的 oldDate 对象:", oldDate);
+
+            const blockInfo = await api.getBlockInfo(blockId);
+            if (!blockInfo || !blockInfo.root_id) {
+                console.error(`验证失败：无法获取块 ${blockId} 的信息。`);
+                return;
+            }
+            console.debug(`步骤1: 获取到块的 root_id: ${blockInfo.root_id}`);
+
+            const oldDailyNoteId = await createDailynote(settingdata["cal-create-pos"], oldDate);
+            console.debug(`步骤2: 根据 oldDate 计算出的 oldDailyNoteId: ${oldDailyNoteId}`);
+
+            if (blockInfo.root_id !== oldDailyNoteId) {
+                console.warn(`验证中止：块的 root_id (${blockInfo.root_id}) 与预期的旧日记本ID (${oldDailyNoteId}) 不匹配。`);
+                return; // 恢复验证，确保安全
+            }
+            // --- 调试日志结束 ---
+
+            const newDailyNoteId = await createDailynote(settingdata["cal-create-pos"], newDate);
+            if (!newDailyNoteId) {
+                sy.showMessage('无法获取或创建新的日记本', 3000, 'error');
+                return;
+            }
+
+            console.debug(`准备将块 ${blockId} 从 ${oldDailyNoteId} 移动到 ${newDailyNoteId}`);
+            await api.moveBlock(blockId, undefined, newDailyNoteId);
+            sy.showMessage('日程已移动到新的日记本中', 2000, 'info');
+
+    } catch (error) {
+        console.error('移动日程块时出错:', error);
+        sy.showMessage('移动日程块失败', 3000, 'error');
+    }
+}
 // ======================================================================
 
 // 统一：获取用于写入属性的目标 ID（优先 itemID，其次 blockId）

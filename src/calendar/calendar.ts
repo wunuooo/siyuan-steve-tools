@@ -189,6 +189,11 @@ export async function run(
             minute: '2-digit',
             hour12: false
         },
+        eventTimeFormat: {
+            hour: 'numeric',
+            minute: '2-digit',
+            meridiem: false
+        },
         droppable: true,
         drop: async (info) => {
             const draggedEl = info.draggedEl as HTMLElement | null;
@@ -422,6 +427,11 @@ export async function run(
                 return;
             }
             showDropTimeIndicator(info);
+            // First, move the block if the setting is enabled
+            if (settingdata["cal-move-block-on-drop"]) {
+                await myF.moveEventBlockToNewDate(info);
+            }
+            // Then, update the database attributes
             myF.updateEventInDatabase(info, calendar, viewValue);
 
         },

@@ -310,6 +310,12 @@ export async function foldBlock(id: BlockId) {
     return request(url, data);
 }
 
+export async function getBlockInfo(id: BlockId) {
+    let sqlScript = `select * from blocks where id ='${id}'`;
+    let data = await sql(sqlScript);
+    return data[0];
+}
+
 
 export async function unfoldBlock(id: BlockId) {
     let data = {
