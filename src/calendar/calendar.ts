@@ -46,7 +46,7 @@ const calendarResizeHandlers = new WeakMap<HTMLElement, () => void>();
 const calendarResizeObservers = new WeakMap<HTMLElement, ResizeObserver>();
 const MIN_CALENDAR_HEIGHT = 320; // Avoid collapsing the calendar when layout space is tight.
 let cachedTagColorMapStr = '';
-let cachedTagColorMap: Record<string, string> = {};
+let cachedTagColorMap: Record<string, TagColorConfig> = {};
 const textColorCache = new Map<string, string>();
 export async function update_av_ids() {
     av_ids = await moduleInstances['M_calendar'].getAVreferenceid();
@@ -835,7 +835,7 @@ export async function run(
                     if (!isRecurring) {
                         const blockRefId = info.event?.extendedProps?.blockId;
                         if (blockRefId) {
-                            info.el.setAttribute('data-type', 'block-ref');
+                            
                             info.el.setAttribute('data-id', blockRefId);
                         }
                     }
